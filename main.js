@@ -14,6 +14,22 @@ class Weather {
     }
 }
 
+class LocalWeather {
+    constructor(latitude, longitude) {
+        this.apiKey = 'a410d434b93feec26bebd81657d102f9';
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+  
+    // Fetch weather from API
+    async getWeather() {
+        const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${this.latitude}&lon=${this.longitude}&units=metric&appid=${this.apiKey}`);
+        const data = await response.json();
+        console.log(data.weather[0].main);
+        return data;   
+    }
+}
+
 class UI {
     constructor() {
       this.location = document.getElementById('result-place');
@@ -80,11 +96,27 @@ input.addEventListener('keyup', function(e) {
   }
 );
 
-window.addEventListener("DOMContentLoaded", () => {
-    const newSearch = new Weather('warsaw');
-    const newUI = new UI();
-    newSearch.getWeather('warsaw')
-    .then((data) => {
-        newUI.populateUI(data);
-    });
-  });
+if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            const {latitude} = position.coords;
+            const {longitude} = position.coords;
+
+            const newSearch = new LocalWeather(latitude, longitude);
+            const newUI = new UI();
+            newSearch.getWeather()
+            .then((data) => {
+            newUI.populateUI(data);
+            });
+        },
+        function () {
+            return
+        }
+    ) 
+}
+
+
+
+
+
+

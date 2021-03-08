@@ -9,6 +9,8 @@
   --dark: #403e39;
 }
 
+
+
 a {
   text-decoration: none;
   color: var(--green);
@@ -24,7 +26,7 @@ a:hover {
 body {
   margin: 0;
   font-family: 'Work Sans', sans-serif;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   background-color: var(--light);
   color: var(--light);
 }
@@ -36,13 +38,13 @@ body {
   align-items: center;
 
   width: 100vw;
-  height: calc(100vh - 5em);
+  height: 100vh;
 }
 
 #logo {
   font-size: 3em;
   text-align: center;
-  margin-bottom:3rem;
+  margin-bottom:2rem;
 }
 
 #weather-form {
@@ -125,7 +127,7 @@ body {
 
 #result-content {
     position: relative;
-    padding: 2em;
+    padding: 1rem;
     margin: 5rem; 
     display: flex;
     flex-direction: column;
@@ -195,6 +197,7 @@ body {
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 1rem;
+  padding: 24px;
 
 }
 
@@ -243,13 +246,17 @@ body {
   filter: brightness(1.2);
 }
 
+.img-fluid {
+  width: calc(100% - 24px);
+}
+
 @media (max-width: 768px) {
   body {
-    font-size: 1em;
+    font-size: 1.2rem;
   }
 
   #content {
-    height: calc(100vh - 5.5em);
+    height: 100vh;
   }
 
   #main-screen,
