@@ -275,11 +275,27 @@ body {
   #result-screen {
     width: 80%;
   }
+
+  #result-temp {
+    font-size: 3.5rem;
+    margin-top: 1.5rem;
+    
+  }
+
+  .details-item h2 {
+    font-size: 1rem;
+  }
+  
+  .details-item p {
+    font-size: 1rem;
+  }
+  
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   #logo {
-    font-size: 2.25em;
+    width: 250px;
+    margin-top: 25%;
   }
 
   /* #search-input {
@@ -288,6 +304,17 @@ body {
 
   #result-summary {
     flex-direction: column;
+  }
+
+  #result-weather {
+    width: 150px;
+  }
+
+  #result-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2;
+    gap: 5px;
   }
 
   .summary-item:last-child {
