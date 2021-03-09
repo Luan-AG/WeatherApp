@@ -7,8 +7,14 @@ class Weather {
     // Fetch weather from API
     async getWeather() {
         const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${this.apiKey}`);
-        const data = await response.json();
-        return data;   
+        if(response.status === 404) {
+            document.querySelector('.empty-field-warning').textContent = 'City not found. Try again!'
+            document.querySelector('.empty-field-warning').style.display = 'block';
+        } else {
+            const data = await response.json();
+            return data;
+        }
+           
     }
 }
 
@@ -72,6 +78,7 @@ const enterCode = 13;
 
 button.addEventListener('click', () => {
     if(input.value === '') {
+        document.querySelector('.empty-field-warning').textContent = 'The search field cannot be empty!'
         document.querySelector('.empty-field-warning').style.display = 'block';
     } else {
         document.querySelector('.empty-field-warning').style.display = 'none';
