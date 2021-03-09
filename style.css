@@ -250,6 +250,18 @@ body {
   width: calc(100% - 24px);
 }
 
+.empty-field-warning {
+  
+  width: auto;
+  font-size: .8rem;
+  padding: .2rem;
+  text-align: justify;
+  background-color: #403e3900;
+  color: rgb(255, 0, 0);
+  /* border: 1px solid rgba(255, 0, 0, 0.623); */
+  display: none;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 1.2rem;

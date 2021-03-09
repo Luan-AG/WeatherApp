@@ -7,9 +7,7 @@ class Weather {
     // Fetch weather from API
     async getWeather() {
         const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${this.apiKey}`);
-            
         const data = await response.json();
-        console.log(data.weather[0].main);
         return data;   
     }
 }
@@ -25,7 +23,6 @@ class LocalWeather {
     async getWeather() {
         const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${this.latitude}&lon=${this.longitude}&units=metric&appid=${this.apiKey}`);
         const data = await response.json();
-        console.log(data.weather[0].main);
         return data;   
     }
 }
@@ -74,22 +71,30 @@ const input = document.querySelector('#search-input');
 const enterCode = 13;
 
 button.addEventListener('click', () => {
-    const newSearch = new Weather(input.value);
-    const newUI = new UI();
-    newSearch.getWeather(input.value)
-    .then((data) => {
-        newUI.populateUI(data);
-    }); 
+    if(input.value === '') {
+        document.querySelector('.empty-field-warning').style.display = 'block';
+    } else {
+        document.querySelector('.empty-field-warning').style.display = 'none';
+        const newSearch = new Weather(input.value);
+        const newUI = new UI();
+        newSearch.getWeather(input.value)
+        .then((data) => {
+            newUI.populateUI(data);
+        });} 
 });
 
 input.addEventListener('keyup', function(e) {
   if (e.keyCode === enterCode) {
-    const newSearch = new Weather(input.value);
-    const newUI = new UI();
-    newSearch.getWeather(input.value)
-    .then((data) => {
-        newUI.populateUI(data);
-    });
+    if(input.value === '') {
+        document.querySelector('.empty-field-warning').style.display = 'block';
+    } else {
+        document.querySelector('.empty-field-warning').style.display = 'none';
+        const newSearch = new Weather(input.value);
+        const newUI = new UI();
+        newSearch.getWeather(input.value)
+        .then((data) => {
+            newUI.populateUI(data);
+        });}
     } else {
       return;
     }
