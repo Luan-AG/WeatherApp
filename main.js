@@ -6,7 +6,7 @@ class Weather {
   
     // Fetch weather from API
     async getWeather() {
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${this.apiKey}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=${this.apiKey}`);
         if(response.status === 404) {
             document.querySelector('.empty-field-warning').textContent = 'City not found. Try again!'
             document.querySelector('.empty-field-warning').style.display = 'block';
@@ -27,7 +27,7 @@ class LocalWeather {
   
     // Fetch weather from API
     async getWeather() {
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${this.latitude}&lon=${this.longitude}&units=metric&appid=${this.apiKey}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${this.latitude}&lon=${this.longitude}&units=metric&appid=${this.apiKey}`);
         const data = await response.json();
         return data;   
     }
